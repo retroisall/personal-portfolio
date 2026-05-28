@@ -1179,13 +1179,18 @@
     modal.querySelector('.modal-tool-name').textContent = name;
     modal.querySelector('.modal-desc').textContent = data.desc;
     modal.querySelector('.modal-usage').textContent = data.usage;
-    modal.classList.add('open');
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.paddingRight = scrollbarWidth + 'px';
+    document.querySelector('nav').style.paddingRight = scrollbarWidth + 'px';
     document.body.style.overflow = 'hidden';
+    modal.classList.add('open');
   }
 
   function closeModal() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+    document.querySelector('nav').style.paddingRight = '';
   }
 
   modal.querySelector('.modal-close').addEventListener('click', closeModal);
