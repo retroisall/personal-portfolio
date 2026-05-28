@@ -982,6 +982,219 @@
       }
     });
   });
+
+  // ── Skill Modal ──
+  const toolData = {
+    'Postman': {
+      desc: 'API 測試與驗證工具',
+      usage: '在測試後端功能時，用 Postman 發送 HTTP 請求、驗證 API 回應格式與狀態碼，搭配 MongoDB/Redis 確認資料寫入正確性。常用於遊戲內購、登入、積分等核心流程的接口測試。'
+    },
+    'Airtest': {
+      desc: '手機/模擬器 UI 自動化工具',
+      usage: '用於 App 端的操作自動化，透過圖像辨識模擬點擊、滑動等使用者行為。在 App 測試情境中，快速建立可重複執行的操作腳本，適合回歸測試與多設備驗證。'
+    },
+    'Chrome DevTools': {
+      desc: '瀏覽器內建開發者工具',
+      usage: '深入分析 React 組件架構與 state 變化、監控 WebSocket 即時數據幀、追蹤 Network 請求時序。是定位前端 bug 的核心工具，能從代碼層級縮短問題溝通週期，而不只是描述表面症狀。'
+    },
+    'WebSocket': {
+      desc: '即時通訊協議監控與分析',
+      usage: '搭配代理工具（mitmproxy）攔截 wss:// 加密流量，解析遊戲即時事件的數據幀結構。用於驗證前後端數據一致性、追蹤異常斷線原因、確認遊戲邏輯觸發時序。'
+    },
+    'Selenium': {
+      desc: '瀏覽器自動化測試框架（學習中）',
+      usage: '目前正在學習中，研究如何將手動測試案例轉換為可自動重複執行的腳本，降低回歸測試的人力成本。'
+    },
+    'Playwright': {
+      desc: '現代 E2E 瀏覽器測試框架（學習中）',
+      usage: '目前正在學習中，相較 Selenium 支援更現代的非同步操作與多瀏覽器平行測試。已初步應用於本作品集網站的自動化驗證。'
+    },
+    'JavaScript': {
+      desc: '前端邏輯與 Chrome 套件開發',
+      usage: '用於分析網頁前端行為（ES6+ 語法閱讀 React 組件）、開發 Chrome 擴充套件（雙語字幕套件）、撰寫自動化腳本與 Jira 爬蟲。'
+    },
+    'Python': {
+      desc: '自動化腳本與測試工具開發',
+      usage: '撰寫自動化腳本模擬多人操作情境，進行高併發場景的壓力測試，搭配後端日誌與資料庫監控驗證系統穩定性。'
+    },
+    'Jenkins': {
+      desc: 'CI/CD 部署流程管理',
+      usage: '管理 Alpha、Beta、Staging 多套測試環境的版本部署流程，確認每次 build 的配置正確後再推送。自主整理標準部署 Playbook，降低人為配置錯誤風險。'
+    },
+    'Docker': {
+      desc: '容器化測試環境管理',
+      usage: '用於建立一致的測試環境，避免「在我機器上可以跑」的問題。協助維運測試環境的穩定性，確保不同測試人員執行結果一致。'
+    },
+    'Git': {
+      desc: '版本控管與協作流程',
+      usage: '進行專案版本管理，在 Code Review 確認後合併 Pull Request 至對應分支。熟悉 branch 策略與 merge 流程，確保測試版本與開發版本對應正確。'
+    },
+    'Linux': {
+      desc: '伺服器維運與問題排除',
+      usage: '在部署測試環境時，排除伺服器依賴衝突與網絡協議問題。熟悉常用指令操作，能在 CLI 環境下確認服務狀態、查看日誌、執行測試腳本。'
+    },
+    'MongoDB': {
+      desc: '文件型資料庫，資料一致性驗證',
+      usage: '深入資料庫層驗證遊戲邏輯的數據結構，確保複雜業務操作後的資料正確性。在跨雲遷移時，設計 MongoDB 數據比對機制作為品質保證的核心依據。'
+    },
+    'Redis': {
+      desc: '快取狀態驗證',
+      usage: '確認遊戲快取資料（如用戶 session、積分暫存）在各操作後的狀態是否符合預期，協助排查快取失效導致的資料不一致問題。'
+    },
+    'MySQL': {
+      desc: '關聯式資料庫查詢與核對',
+      usage: '透過 SQL 查詢驗證業務報表資料的準確性，在跨雲資料庫遷移後進行數據比對，確認遷移結果與原始資料一致。'
+    },
+    'AWS': {
+      desc: '雲端服務品質驗證（原始環境）',
+      usage: '在 AWS → Aliyun 跨雲遷移專案中，負責原始環境的資料匯出與品質基準建立，作為遷移後數據比對的參照標準。'
+    },
+    'Aliyun': {
+      desc: '阿里雲服務（遷移目標環境）',
+      usage: '在跨雲資料庫遷移專案中，驗證 Aliyun 環境上的服務配置、資料完整性與報表系統輸出，確保業務流程在新環境順利運行。'
+    },
+    'Claude Code': {
+      desc: 'AI 協作開發工具',
+      usage: '透過對話式指令驅動程式碼生成，完成 Chrome 雙語字幕套件的前端 UI、Firebase 對接與本作品集網站的完整開發。實踐「Vibe Coding」模式，驗證 AI 賦能讓非純開發背景的工程師也能獨立交付可上線產品。'
+    },
+    'Vibe Coding': {
+      desc: '以 AI 為核心的協作開發模式',
+      usage: '用自然語言描述需求，由 AI 生成程式碼並迭代調整，大幅壓縮開發週期。已實際應用於 Chrome 套件與本作品集網站的開發，從零到上線皆透過此模式完成。'
+    },
+    'AI 自動化測試': {
+      desc: '研究方向：AI 驅動測試腳本生成',
+      usage: '研究將 AI 導入 Selenium/Airtest 框架，目標實現從測試案例描述自動生成腳本，解決自動化腳本維護成本高的痛點。目前為學習探索階段。'
+    },
+    'Prompt Engineering': {
+      desc: 'AI 指令優化技術',
+      usage: '透過結構化的 Prompt 設計，讓 AI 更準確理解測試需求並生成有效輸出。應用於 Jira 資料分析、測試報告摘要生成、以及 Claude Code 開發流程的效率提升。'
+    },
+    'mitmproxy': {
+      desc: 'HTTP/HTTPS/WebSocket 流量攔截工具',
+      usage: '以代理模式攔截 App 與 API 之間的加密流量，解析 wss:// WebSocket 數據幀的明文內容。相比 Fiddler 更輕量，支援腳本化流量修改，適合需要自動化分析的測試情境。'
+    }
+  };
+
+  // Modal HTML
+  const modal = document.createElement('div');
+  modal.id = 'skill-modal';
+  modal.innerHTML = `
+    <div class="modal-backdrop"></div>
+    <div class="modal-box">
+      <button class="modal-close">✕</button>
+      <div class="modal-tool-name"></div>
+      <div class="modal-desc"></div>
+      <div class="modal-section-label">使用情境</div>
+      <div class="modal-usage"></div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  // Modal CSS
+  const modalStyle = document.createElement('style');
+  modalStyle.textContent = `
+    #skill-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    #skill-modal.open { display: flex; }
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(45, 36, 22, 0.5);
+      backdrop-filter: blur(4px);
+    }
+    .modal-box {
+      position: relative;
+      background: #2d2416;
+      color: #fff;
+      border-radius: 16px;
+      padding: 36px;
+      max-width: 480px;
+      width: 100%;
+      animation: modalIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0)    scale(1); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #fff; }
+    .modal-tool-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .modal-desc {
+      font-size: 0.85rem;
+      color: #ede8e2;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .modal-section-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #8b7355;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .modal-usage {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.8;
+    }
+    .skill-tag { cursor: pointer; }
+    .skill-tag:hover {
+      background: rgba(255,255,255,0.25) !important;
+      border-color: rgba(255,255,255,0.5) !important;
+    }
+  `;
+  document.head.appendChild(modalStyle);
+
+  function openModal(name) {
+    const data = toolData[name];
+    if (!data) return;
+    modal.querySelector('.modal-tool-name').textContent = name;
+    modal.querySelector('.modal-desc').textContent = data.desc;
+    modal.querySelector('.modal-usage').textContent = data.usage;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  modal.querySelector('.modal-close').addEventListener('click', closeModal);
+  modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  document.querySelectorAll('.skill-tag').forEach(tag => {
+    tag.addEventListener('click', () => openModal(tag.textContent.trim()));
+  });
 </script>
 
 
