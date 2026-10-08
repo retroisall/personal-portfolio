@@ -2,7 +2,14 @@
 <html lang="zh-TW"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>郭峻瑋 | 資深測試工程師 &amp; AI 賦能專家</title>
+  <meta name="description" content="郭峻瑋有十年以上 QA 經驗，重視測試規劃、實測證據、AI 協作與流程改善。工作案例與個人實作介紹。">
+  <title>郭峻瑋｜資深 QA、測試自動化與流程改善</title>
+  <meta property="og:title" content="郭峻瑋｜資深 QA、測試自動化與流程改善">
+  <meta property="og:description" content="郭峻瑋有十年以上 QA 經驗，重視測試規劃、實測證據、AI 協作與流程改善。工作案例與個人實作介紹。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://retroisall.github.io/personal-portfolio/">
+  <meta property="og:locale" content="zh_TW">
+  <link rel="canonical" href="https://retroisall.github.io/personal-portfolio/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,4 93,27 93,73 50,96 7,73 7,27' fill='%232d2416'/><polygon points='50,18 80,35 80,65 50,82 20,65 20,35' fill='%238b7355'/><text x='50' y='58' font-family='system-ui,sans-serif' font-size='28' font-weight='800' fill='%23f5f1ed' text-anchor='middle'>JW</text></svg>">
   <style>
     /* ── 新配色：溫暖米色/淺褐色雙色調 ── */
@@ -675,6 +682,63 @@
         padding: 24px;
       }
     }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .parallax-bg { display: none; }
+      nav .container { flex-wrap: wrap; gap: 8px; }
+      .nav-links { flex-wrap: wrap; gap: 8px 20px; }
+      .container { overflow-wrap: anywhere; }
+      .work-grid, .skills-grid { grid-template-columns: minmax(0, 1fr); }
+      .about-grid > *, .work-grid > *, .skills-grid > * { min-width: 0; }
+      #skill-modal .modal-box { max-height: calc(100dvh - 48px); overflow-y: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .hero-content, .highlight-card, .timeline-item, .skill-category,
+      .work-card, .contact-wrap { opacity: 1 !important; transform: none !important; }
+      .parallax-shape { transform: translateY(-50%) !important; }
+      .btn:hover { transform: none; }
+      .work-link:hover { gap: 6px; }
+    }
+
+    @media print {
+      @page { size: A4; margin: 15mm; }
+      :root {
+        --bg-light: #fff; --bg-dark: #fff; --bg-darker: #fff;
+        --surface: #fff; --text-dark: #000; --text-light: #000;
+        --text-muted: #000; --text-white: #000; --accent: #000;
+      }
+      *, *::before, *::after {
+        color: #000 !important; background: transparent !important;
+        animation: none !important; transition: none !important;
+        box-shadow: none !important; text-shadow: none !important;
+      }
+      html { scroll-behavior: auto; }
+      body { background: #fff !important; padding: 0 !important; overflow: visible !important; }
+      nav, .bg-hero, .parallax-bg, #skill-modal, button, [role="button"], .btn { display: none !important; }
+      .container { max-width: none; padding: 0; overflow-wrap: anywhere; }
+      section, #hero { padding: 16px 0; }
+      .section-header { margin-bottom: 16px; }
+      .hero-content, .highlight-card, .timeline-item, .skill-category,
+      .work-card, .contact-wrap { opacity: 1 !important; transform: none !important; }
+      .highlight-card, .skill-category, .work-card, .contact-wrap {
+        background: #fff !important; border: 1px solid #777; padding: 16px;
+        break-inside: avoid; page-break-inside: avoid;
+      }
+      .timeline-item { break-inside: avoid; page-break-inside: avoid; }
+      .about-grid, .work-grid, .skills-grid { display: block; }
+      .highlight-card, .skill-category, .work-card { margin-bottom: 16px; }
+      .contact-links { display: block; }
+      a[href^="https://"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+      a[href^="mailto:"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+    }
   </style>
 
 </head>
@@ -700,240 +764,39 @@
 </nav>
 
 <!-- ── Hero ── -->
-<section id="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-tag">AI 賦能自動化測試專家</div>
-      <h1 class="hero-name">郭峻瑋<br><span class="accent">資深 QA Lead</span></h1>
-      <p class="hero-subtitle">
-        8 年測試工程師經驗，領導團隊交付 600+ 有效缺陷報告。
-        現正轉型 AI 賦能自動化，用 Claude Code、Vibe Coding 開發實際可上線的產品。
-      </p>
-      <div class="hero-cta">
-        <a href="mailto:kuoway79@gmail.com" class="btn btn-primary">✉ 聯絡我</a>
-        <a href="#experience" class="btn btn-outline">↓ 查看經歷</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-number">8+</div>
-          <div class="stat-label">年資深 QA 經驗</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">600+</div>
-          <div class="stat-label">有效缺陷報告</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">12</div>
-          <div class="stat-label">人 Lead 管理規模</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">3000+</div>
-          <div class="stat-label">人併發壓測成功</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="hero"><div class="container"><div class="hero-content"><div class="hero-tag">資深 QA ／ 測試自動化與流程改善</div><h1 class="hero-name">郭峻瑋<br><span class="accent">資深 QA</span></h1><p class="hero-subtitle">我是郭峻瑋，有十年以上 QA 與軟體測試經驗，曾任測試小組長與專案負責人。 我希望投入資深 QA、測試自動化或流程改善工作，結合測試判斷、技術診斷與團隊協作，建立可靠且可持續使用的品質流程。</p><div class="hero-cta"><a href="mailto:kuoway79@gmail.com" class="btn btn-primary">✉ 聯絡我</a><a href="#experience" class="btn btn-outline">↓ 查看經歷</a></div><div class="hero-stats"><div class="stat-item"><div class="stat-number">十年以上</div><div class="stat-label">QA 與軟體測試經驗</div></div><div class="stat-item"><div class="stat-number">一百多條</div><div class="stat-label">近期工作・去重後功能流程</div></div></div></div></div></section>
 
 <!-- ── About ── -->
-<section id="about">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">About</div>
-      <h2 class="section-title">關於我</h2>
-      <p class="section-desc">從手動測試 → Lead 管理 → AI 賦能開發，每個階段都在突破自己。</p>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>
-          測試對我不是機械式操作。我習慣進入 <strong>Chrome DevTools 分析 React 組件</strong>、監控 WebSocket 封包，從代碼層級定位問題——而不只是描述表面症狀。
-        </p>
-        <p>
-          擔任 Lead 後，我發現最大槓桿點不是自己測得多快，而是 <strong>把對的人放在對的位置</strong>。誰擅長介面細節、誰更適合確認資料一致性——這些判斷讓團隊自然協作。
-        </p>
-        <p>
-          現在，我正在用 <strong>AI 賦能</strong>擴張測試邊界：用 Vibe Coding 開發 Chrome 套件、研究 AI 驅動的自動化測試、讓重複性工作消失。
-        </p>
-      </div>
-      <div class="highlight-card">
-        <h3>核心強項</h3>
-        <ul class="highlight-list">
-          <li>白箱測試：DevTools、WebSocket 分析</li>
-          <li>資料驗證：MongoDB/Redis 深度校驗</li>
-          <li>壓力測試：Python 200 機器人併發</li>
-          <li>環境維運：Jenkins、Docker、Linux</li>
-          <li>流程自動化：VBA、Jira、飛書 Workflow</li>
-          <li>AI 協作：Claude Code、Vibe Coding</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="about"><div class="container"><div class="section-header"><div class="section-tag">關於我</div><h2 class="section-title">關於我</h2><p class="section-desc">先確認規則、風險與驗收標準，再逐項核對實測證據。</p></div><div class="about-grid"><div class="about-text"><p>我的測試工具一路從 Excel 公式、Apps Script／VBA、Ui.Vision 半自動化，走到 JavaScript、Playwright 與 AI 代理，各階段累積的概念幫助我理解新專案與工具的用法。</p><p>我先確認功能規則、風險與驗收標準，再運用工具執行測試，最後逐項核對實測證據。</p><p>我透過 MCP 串接 Claude Code 與 Playwright，讓 AI 協助規劃情境、撰寫腳本與執行瀏覽器測試，也使用 AI 產生 Postman Collection。</p><p>我負責對照截圖、API、資料庫與前端結果，不把工具回報的「通過」直接當成結論。</p></div><div class="highlight-card"><h3>核心強項</h3><ul class="highlight-list"><li>測試規劃：確認功能規則、風險與驗收標準</li><li>瀏覽器驗證：Playwright、截圖與回歸測試</li><li>資料核對：API、資料庫與前端結果</li><li>技術診斷：DevTools、WebSocket、adb／logcat</li><li>團隊協作：安排測試、追蹤缺陷、交接流程</li><li>AI 協作：協助執行，由我核對證據與結論</li></ul></div></div></div></section>
 
 <!-- ── Experience ── -->
-<section id="experience">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Experience</div>
-      <h2 class="section-title">工作經歷</h2>
-      <p class="section-desc">每個階段都用量化成果證明能力。</p>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-period">2018/02 – 2026/03（8 年）</div>
-        <div class="timeline-role">資深軟體 QA / 專案負責人（Lead）</div>
-        <div class="timeline-company">線上娛樂平台產業 ｜ 管理 2–3 人</div>
-        <ul class="timeline-bullets">
-          <li>主導 VIP 包桌、大型賽事系統等高價值專案，兩年內交付 600+ 有效缺陷報告</li>
-          <li>負責高併發系統壓力測試，成功支撐 3,000+ 人同時報名</li>
-          <li>負責 AWS → Aliyun 核心資料庫遷移的品質驗證，協助確保順利轉移完成</li>
-          <li>使用 Jenkins 管理多環境部署，自撰標準 Playbook</li>
-          <li>從 Chrome DevTools 分析 React 組件與 WebSocket，縮短問題溝通週期</li>
-        </ul>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-period">2015/03 – 2017/08（2.5 年）</div>
-        <div class="timeline-role">遊戲測試小組長</div>
-        <div class="timeline-company">拔格司科技 ｜ 台北市內湖 ｜ 管理 ~20 人</div>
-        <ul class="timeline-bullets">
-          <li>主導遊戲研發、封測、上線的完整測試流程</li>
-          <li>透過後台數據建立玩家行為模型，協助判定外掛與異常玩家</li>
-          <li>建立 KPI 考核制度，帶領 20 人團隊</li>
-          <li>公司縮編期間（200→30人），因優異能力獲選核心留任</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="experience"><div class="container"><div class="section-header"><div class="section-tag">工作經歷</div><h2 class="section-title">工作經歷</h2><p class="section-desc">保留完整職涯，分清個人責任、團隊成果與每個數字的口徑。</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-period">2026/07 – 2026/09</div><div class="timeline-role">QA 工程師</div><div class="timeline-company">樂創互娛科技</div><ul class="timeline-bullets"><li>我在 2026 年 7 月至 9 月擔任 QA 工程師，負責多品牌影音串流平台四個品牌的 H5、管理後台及 App 測試，涵蓋十個以上站台環境。</li><li>功能規則需要釐清時，我先實際驗證，再與產品及開發確認預期行為，整理一百多條去重後功能流程作為驗收基準。</li><li>我維護跨品牌與後台合計 357 條測項，這是離職後整理的定版快照，與去重後的完整功能流程分別計數。</li><li>多模板改版時，我自建 141 條功能與視覺測項，對照四個模板執行驗證，首輪提出 28 張缺陷單並追蹤複驗至結案。</li><li>資料庫讀寫分離改版時，我對照 166 支 API 在雙環境的回應，運用 AI 產生 Postman Collection，再核對 API、資料庫與前端結果。</li><li>我在首輪人工驗證後，讓 AI 執行適合自動化的回歸測試，再以腳本檢查測試紀錄與結論。</li><li>安全性測試涵蓋品牌間的內容與帳號權限隔離、角色權限、兩步驟登入，以及輸入欄位對惡意程式碼的防護。</li><li>我也驗證從後台設定到前端顯示的端到端流程，並將測試工具、規範與注意事項交接給同事。</li></ul></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-period">2017/10 – 2026/04</div><div class="timeline-role">資深測試工程師與專案負責人</div><div class="timeline-company">祥捷國際｜英屬維京群島商祥捷國際開發股份有限公司台灣分公司</div><ul class="timeline-bullets"><li>我於 2017 年 10 月至 2026 年 4 月擔任資深測試工程師與專案負責人，帶領 2–3 人測試小組，依版本風險安排任務、追蹤缺陷，並與產品及開發對齊驗收範圍。</li><li>我負責十餘款自研遊戲與第三方專案的功能、整合及上線前驗證，兩年間與團隊交付 600 件以上有效缺陷報告。</li><li>我使用 Git、Jenkins 維護測試環境部署流程，並整理可供團隊沿用的操作文件。</li></ul></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-period">2015/03 – 2017/08</div><div class="timeline-role">遊戲測試小組長</div><div class="timeline-company">遊戲產業</div><ul class="timeline-bullets"><li>我於 2015 年 3 月至 2017 年 8 月擔任遊戲測試小組長，主導遊戲從研發、封測到上線的測試流程。</li><li>我依主管交辦的業務方向，帶領約 25 人的陪玩／測試團隊，與團隊分析玩家行為並參與擬定陪玩策略。</li></ul></div></div></div></section>
 
 <!-- ── Skills ── -->
-<section id="skills">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Skills &amp; Tools</div>
-      <h2 class="section-title">技能與工具</h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-category">
-        <h3>測試工具</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Postman</span>
-          <span class="skill-tag">Airtest</span>
-          <span class="skill-tag">Chrome DevTools</span>
-          <span class="skill-tag">WebSocket</span>
-          <span class="skill-tag">Selenium</span>
-          <span class="skill-tag">Playwright</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <h3>開發 / 環境</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Jenkins</span>
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">Git</span>
-          <span class="skill-tag">Linux</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <h3>資料 / 雲端</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">Redis</span>
-          <span class="skill-tag">MySQL</span>
-          <span class="skill-tag">AWS</span>
-          <span class="skill-tag">Aliyun</span>
-        </div>
-      </div>
-      <div class="skill-category">
-        <h3>AI 協作 &amp; 未來</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Claude Code</span>
-          <span class="skill-tag">Vibe Coding</span>
-          <span class="skill-tag">AI 自動化測試</span>
-          <span class="skill-tag">Prompt Engineering</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="skills"><div class="container"><div class="section-header"><div class="section-tag">技能與工具</div><h2 class="section-title">技能與工具</h2><p class="section-desc">點選標籤，查看我實際用它做什麼。</p></div><div class="skills-grid"><div class="skill-category"><h3>測試與診斷</h3><div class="skill-tags"><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Playwright 執行 H5 冒煙測試並留下截圖證據。">Playwright</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Postman 對照改版前後的 API 回應，AI 產生的 Collection 由我再逐一核對。">Postman</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Figma 對照前端文字、元件、顏色與位置是否符合設計稿。">Figma</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 adb／logcat 連接 Android WebView 實機跑流程，並查找 App 卡住的原因。">adb／logcat</span></div><p>Playwright：H5 冒煙測試</p><p>Postman：API 回應對照</p><p>Figma：設計稿對照</p><p>adb／logcat：Android 實機診斷</p></div><div class="skill-category"><h3>腳本與流程</h3><div class="skill-tags"><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 JavaScript 撰寫 Playwright 測試腳本，在 AI 普及前也曾於 Codewars 完成兩百多題。">JavaScript</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Python 撰寫檢查腳本，比對截圖缺漏、產生測試報告與多品牌對照圖。">Python</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Google Apps Script／VBA 將 Jira 資料匯入試算表分析、批次替圖片改檔名。">Apps Script／VBA</span></div><p>JavaScript：測試腳本</p><p>Python：檢查腳本與報告</p><p>Apps Script／VBA：試算表與檔案處理</p></div><div class="skill-category"><h3>資料核對</h3><div class="skill-tags"><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Chrome DevTools 觀察 Network 請求與 WebSocket 訊息，追查資料流。">Chrome DevTools</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 MongoDB／Redis 核對操作後的資料是否正確寫入。">MongoDB／Redis</span></div><p>Chrome DevTools：請求與訊息診斷</p><p>MongoDB／Redis：操作後資料核對</p></div><div class="skill-category"><h3>AI 與團隊協作</h3><div class="skill-tags"><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Claude Code 協助操作瀏覽器、撰寫測試腳本與整理報告。">Claude Code</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Jira／Confluence 開單、追蹤缺陷與同步測試報告。">Jira／Confluence</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我使用 Git、Jenkins 維護測試環境部署流程，並整理可供團隊沿用的操作文件。">Git／Jenkins</span></div><p>Claude Code：AI 協助執行</p><p>Jira／Confluence：缺陷與報告協作</p><p>Git／Jenkins：測試環境部署</p></div></div></div></section>
 
 <!-- ── Featured Work ── -->
-<section id="work">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Featured Work</div>
-      <h2 class="section-title">代表專案</h2>
-      <p class="section-desc">用量化成果說話。</p>
-    </div>
-    <div class="work-grid">
-      <div class="work-card">
-        <div class="work-title">大型賽事系統壓力測試</div>
-        <div class="work-context">線上娛樂平台 ｜ 高併發場景</div>
-        <div class="work-desc">
-          負責高併發系統壓力測試，監控後端日誌與資料庫，確保系統在大量用戶同時使用下的穩定性。
-        </div>
-        <div class="work-outcome">
-          <strong>結果：</strong>成功支撐 3,000+ 人同時報名，上線後零重大事故。
-        </div>
-      </div>
-
-      <div class="work-card">
-        <div class="work-title">跨雲端資料庫無損遷移</div>
-        <div class="work-context">AWS → Aliyun ｜ 零容錯品質</div>
-        <div class="work-desc">
-          設計多層數據一致性校驗機制，覆蓋資料庫比對、報表輸出驗證、業務流程端到端測試。
-        </div>
-        <div class="work-outcome">
-          <strong>結果：</strong>順利完成核心資料庫遷移，業務無中斷。
-        </div>
-      </div>
-
-      <div class="work-card">
-        <div class="work-title">Chrome AI 雙語字幕套件</div>
-        <div class="work-context">個人專案 ｜ Vibe Coding 實踐</div>
-        <div class="work-desc">
-          用 AI 協作開發（Claude Code + Vibe Coding）完成前端 UI、Firebase 後端、宣傳網頁的完整交付。
-        </div>
-        <div class="work-outcome">
-          <strong>結果：</strong>實際上線，驗證非開發背景人員在 AI 賦能下可獨立完成產品。
-        </div>
-        <a href="https://github.com/retroisall" class="work-link" target="_blank">↗ GitHub</a>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="work"><div class="container"><div class="section-header"><div class="section-tag">工作代表案例</div><h2 class="section-title">工作代表案例</h2><p class="section-desc">本人做了什麼、如何驗證，以及可核對的結果。</p></div><div class="work-grid"><div class="work-card"><div class="work-title">大型賽事系統驗證</div><div class="work-context">多帳號情境與壓力測試</div><div class="work-desc">在大型賽事系統驗證中，我以腳本批次建立測試帳號，模擬 200 個機器人執行壓力測試，並驗證多帳號情境與排行榜邏輯。</div><div class="work-outcome"><strong>結果：</strong>我在正式壓測前發現問題，該系統後續實際支援線上三千人併發參賽。</div></div><div class="work-card"><div class="work-title">跨雲資料庫遷移驗證</div><div class="work-context">AWS → 阿里雲</div><div class="work-desc">在 AWS 遷往阿里雲的資料庫遷移專案中，我盤點需驗證頁面，與決策者確認測試範圍與驗收基準，再協調各組完成資料與報表驗證。</div><div class="work-outcome">這些經驗讓我重視執行前先釐清風險、責任與判定依據。</div></div></div></div></section>
 
 <!-- ── Contact ── -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-wrap">
-      <h3>一起合作？</h3>
-      <p>目前正在尋找新機會。如果你在找一個有 Lead 經驗、正在積極轉型 AI 賦能自動化的資深 QA，歡迎聯絡。</p>
-      <div class="contact-links">
-        <a href="mailto:kuoway79@gmail.com" class="contact-link">✉ kuoway79@gmail.com</a>
-        <a href="https://github.com/retroisall" class="contact-link" target="_blank">⌥ GitHub</a>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="projects"><div class="container"><div class="section-header"><div class="section-tag">個人實作</div><h2 class="section-title">個人實作</h2><p class="section-desc">工作之外，把日常問題做成工具；依實際進度標示。</p></div><div class="work-grid"><div class="work-card"><div class="work-title">YouTube Learning Bar</div><div class="work-context">曾上線・新版準備中</div><div class="work-desc">我曾與 AI 協作完成雙語字幕套件，讓看影片、查字與複習接在一起。</div><div class="work-outcome"><p><strong>AI 協作：</strong>與 AI 協作開發；Claude Code。</p><p><strong>QA 亮點：</strong>單元、靜態、Smoke 與本機 E2E 測試。</p><p>程式碼未公開</p></div><a class="work-link" href="https://github.com/retroisall/youtube-learning-bar-privacy" target="_blank" rel="noopener noreferrer">↗ 公開政策頁</a></div><div class="work-card"><div class="work-title">Life Notes Agent</div><div class="work-context">個人使用・持續開發</div><div class="work-desc">我把網頁上的討論整理成 Obsidian 筆記，做成只給自己用的工具。</div><div class="work-outcome"><p><strong>AI 協作：</strong>Claude Code／Codex 串接與驗證。</p><p><strong>QA 亮點：</strong>單元、host、靜態與 E2E 回歸。</p><p>程式碼未公開</p></div></div><div class="work-card"><div class="work-title">語音對話工具</div><div class="work-context">個人使用・持續開發</div><div class="work-desc">我做了一個語音對話工具，讓我用說的輸入，也能聽取回應。</div><div class="work-outcome"><p><strong>AI 協作：</strong>與 AI 協作開發；Claude Code。</p><p><strong>QA 亮點：</strong>語音辨識、繁簡轉換與麥克風實測。</p><p>程式碼未公開</p></div></div><div class="work-card"><div class="work-title">BBC 新聞精選推播</div><div class="work-context">個人使用・功能已完成</div><div class="work-desc">我把新聞篩選、繁中翻譯與 LINE 推播接起來，減少每天逐篇翻找。</div><div class="work-outcome"><p><strong>AI 協作：</strong>與 AI 協作開發；Claude Code。</p><p><strong>QA 亮點：</strong>手動驗證與通知測試入口。</p><p>程式碼未公開</p></div></div><div class="work-card"><div class="work-title">吃單字電子雞</div><div class="work-context">規劃中・尚未完成遊戲</div><div class="work-desc">我正在規劃一隻靠英文單字餵養的電子雞，把複習放進照顧寵物的過程。</div><div class="work-outcome"><p><strong>AI 協作：</strong>與 AI 協作討論規格。</p><p>程式碼未公開</p></div></div></div></div></section>
+<section id="interests"><div class="container"><div class="section-header"><div class="section-tag">工作之外</div><h2 class="section-title">工作之外</h2><p class="section-desc">整理知識與持續實作，讓經驗可以查找與沿用。</p></div><div class="about-grid"><div class="about-text"><p>工作之外，我使用 Obsidian 整理 QA、前端與開發工具研究，以及測試方法、工具操作與問題排查紀錄，方便日後查找與沿用。</p><p>我曾與 AI 協作開發並上線 YouTube Learning Bar，也就是 Chrome 雙語字幕套件，完成前端功能與資料串接。</p><p>我以 GitHub Actions 建立 E2E Smoke Test，定期執行基本功能測試。</p></div><div class="highlight-card"><h3>接下來想做的事</h3><ul class="highlight-list"><li>我希望持續改善測試品質與工作流程，讓測試判斷、AI 應用與團隊協作累積成可追查、可交接的工作方式。</li></ul></div></div></div></section>
+<section id="contact"><div class="container"><div class="contact-wrap"><h3>一起合作？</h3><p>若你在尋找資深 QA、測試自動化或流程改善的人選，歡迎與我聯絡。</p><div class="contact-links"><a href="mailto:kuoway79@gmail.com" class="contact-link">✉ kuoway79@gmail.com</a><a href="https://github.com/retroisall" class="contact-link" target="_blank" rel="noopener noreferrer">⌥ GitHub</a></div></div></div></section>
 
 <!-- ── Footer ── -->
 <footer>
   <div class="container">
-    <p>© 2026 郭峻瑋 · Design System v2</p>
+    <p>© 2026 郭峻瑋</p>
   </div>
 </footer>
 
 <script>
   // Parallax scroll effect
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const parallaxShape = document.querySelector('[data-parallax]');
   
   window.addEventListener('scroll', () => {
-    if (parallaxShape) {
+    if (parallaxShape && !reducedMotion.matches) {
       const speed = parseFloat(parallaxShape.getAttribute('data-parallax'));
       const yPos = window.scrollY * speed;
       parallaxShape.style.transform = `translateY(calc(-50% + ${yPos}px))`;
@@ -942,7 +805,7 @@
 
   // Reset on load
   window.addEventListener('load', () => {
-    if (parallaxShape) {
+    if (parallaxShape && !reducedMotion.matches) {
       parallaxShape.style.transform = 'translateY(-50%)';
     }
   });
@@ -978,110 +841,74 @@
       const target = document.getElementById(targetId);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+        target.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth' });
       }
     });
   });
 
   // ── Skill Modal ──
   const toolData = {
-    'Postman': {
-      desc: 'API 測試與驗證工具',
-      usage: '在測試後端功能時，用 Postman 發送 HTTP 請求、驗證 API 回應格式與狀態碼，搭配 MongoDB/Redis 確認資料寫入正確性。常用於遊戲內購、登入、積分等核心流程的接口測試。'
+    "Playwright": {
+        "desc": "H5 冒煙測試",
+        "usage": "我用 Playwright 執行 H5 冒煙測試並留下截圖證據。"
     },
-    'Airtest': {
-      desc: '手機/模擬器 UI 自動化工具',
-      usage: '用於 App 端的操作自動化，透過圖像辨識模擬點擊、滑動等使用者行為。在 App 測試情境中，快速建立可重複執行的操作腳本，適合回歸測試與多設備驗證。'
+    "Postman": {
+        "desc": "API 回應對照",
+        "usage": "我用 Postman 對照改版前後的 API 回應，AI 產生的 Collection 由我再逐一核對。"
     },
-    'Chrome DevTools': {
-      desc: '瀏覽器內建開發者工具',
-      usage: '深入分析 React 組件架構與 state 變化、監控 WebSocket 即時數據幀、追蹤 Network 請求時序。是定位前端 bug 的核心工具，能從代碼層級縮短問題溝通週期，而不只是描述表面症狀。'
+    "Figma": {
+        "desc": "設計稿對照",
+        "usage": "我用 Figma 對照前端文字、元件、顏色與位置是否符合設計稿。"
     },
-    'WebSocket': {
-      desc: '即時通訊協議監控與分析',
-      usage: '搭配代理工具（mitmproxy）攔截 wss:// 加密流量，解析遊戲即時事件的數據幀結構。用於驗證前後端數據一致性、追蹤異常斷線原因、確認遊戲邏輯觸發時序。'
+    "adb／logcat": {
+        "desc": "Android 實機診斷",
+        "usage": "我用 adb／logcat 連接 Android WebView 實機跑流程，並查找 App 卡住的原因。"
     },
-    'Selenium': {
-      desc: '瀏覽器自動化測試框架（學習中）',
-      usage: '目前正在學習中，研究如何將手動測試案例轉換為可自動重複執行的腳本，降低回歸測試的人力成本。'
+    "JavaScript": {
+        "desc": "測試腳本",
+        "usage": "我用 JavaScript 撰寫 Playwright 測試腳本，在 AI 普及前也曾於 Codewars 完成兩百多題。"
     },
-    'Playwright': {
-      desc: '現代 E2E 瀏覽器測試框架（學習中）',
-      usage: '目前正在學習中，相較 Selenium 支援更現代的非同步操作與多瀏覽器平行測試。已初步應用於本作品集網站的自動化驗證。'
+    "Python": {
+        "desc": "檢查腳本與報告",
+        "usage": "我用 Python 撰寫檢查腳本，比對截圖缺漏、產生測試報告與多品牌對照圖。"
     },
-    'JavaScript': {
-      desc: '前端邏輯與 Chrome 套件開發',
-      usage: '用於分析網頁前端行為（ES6+ 語法閱讀 React 組件）、開發 Chrome 擴充套件（雙語字幕套件）、撰寫自動化腳本與 Jira 爬蟲。'
+    "Apps Script／VBA": {
+        "desc": "試算表與檔案處理",
+        "usage": "我用 Google Apps Script／VBA 將 Jira 資料匯入試算表分析、批次替圖片改檔名。"
     },
-    'Python': {
-      desc: '自動化腳本與測試工具開發',
-      usage: '撰寫自動化腳本模擬多人操作情境，進行高併發場景的壓力測試，搭配後端日誌與資料庫監控驗證系統穩定性。'
+    "Chrome DevTools": {
+        "desc": "請求與訊息診斷",
+        "usage": "我用 Chrome DevTools 觀察 Network 請求與 WebSocket 訊息，追查資料流。"
     },
-    'Jenkins': {
-      desc: 'CI/CD 部署流程管理',
-      usage: '管理 Alpha、Beta、Staging 多套測試環境的版本部署流程，確認每次 build 的配置正確後再推送。自主整理標準部署 Playbook，降低人為配置錯誤風險。'
+    "MongoDB／Redis": {
+        "desc": "操作後資料核對",
+        "usage": "我用 MongoDB／Redis 核對操作後的資料是否正確寫入。"
     },
-    'Docker': {
-      desc: '容器化測試環境管理',
-      usage: '用於建立一致的測試環境，避免「在我機器上可以跑」的問題。協助維運測試環境的穩定性，確保不同測試人員執行結果一致。'
+    "Claude Code": {
+        "desc": "AI 協助執行",
+        "usage": "我用 Claude Code 協助操作瀏覽器、撰寫測試腳本與整理報告。"
     },
-    'Git': {
-      desc: '版本控管與協作流程',
-      usage: '進行專案版本管理，在 Code Review 確認後合併 Pull Request 至對應分支。熟悉 branch 策略與 merge 流程，確保測試版本與開發版本對應正確。'
+    "Jira／Confluence": {
+        "desc": "缺陷與報告協作",
+        "usage": "我用 Jira／Confluence 開單、追蹤缺陷與同步測試報告。"
     },
-    'Linux': {
-      desc: '伺服器維運與問題排除',
-      usage: '在部署測試環境時，排除伺服器依賴衝突與網絡協議問題。熟悉常用指令操作，能在 CLI 環境下確認服務狀態、查看日誌、執行測試腳本。'
-    },
-    'MongoDB': {
-      desc: '文件型資料庫，資料一致性驗證',
-      usage: '深入資料庫層驗證遊戲邏輯的數據結構，確保複雜業務操作後的資料正確性。在跨雲遷移時，設計 MongoDB 數據比對機制作為品質保證的核心依據。'
-    },
-    'Redis': {
-      desc: '快取狀態驗證',
-      usage: '確認遊戲快取資料（如用戶 session、積分暫存）在各操作後的狀態是否符合預期，協助排查快取失效導致的資料不一致問題。'
-    },
-    'MySQL': {
-      desc: '關聯式資料庫查詢與核對',
-      usage: '透過 SQL 查詢驗證業務報表資料的準確性，在跨雲資料庫遷移後進行數據比對，確認遷移結果與原始資料一致。'
-    },
-    'AWS': {
-      desc: '雲端服務品質驗證（原始環境）',
-      usage: '在 AWS → Aliyun 跨雲遷移專案中，負責原始環境的資料匯出與品質基準建立，作為遷移後數據比對的參照標準。'
-    },
-    'Aliyun': {
-      desc: '阿里雲服務（遷移目標環境）',
-      usage: '在跨雲資料庫遷移專案中，驗證 Aliyun 環境上的服務配置、資料完整性與報表系統輸出，確保業務流程在新環境順利運行。'
-    },
-    'Claude Code': {
-      desc: 'AI 協作開發工具',
-      usage: '透過對話式指令驅動程式碼生成，完成 Chrome 雙語字幕套件的前端 UI、Firebase 對接與本作品集網站的完整開發。實踐「Vibe Coding」模式，驗證 AI 賦能讓非純開發背景的工程師也能獨立交付可上線產品。'
-    },
-    'Vibe Coding': {
-      desc: '以 AI 為核心的協作開發模式',
-      usage: '用自然語言描述需求，由 AI 生成程式碼並迭代調整，大幅壓縮開發週期。已實際應用於 Chrome 套件與本作品集網站的開發，從零到上線皆透過此模式完成。'
-    },
-    'AI 自動化測試': {
-      desc: '研究方向：AI 驅動測試腳本生成',
-      usage: '研究將 AI 導入 Selenium/Airtest 框架，目標實現從測試案例描述自動生成腳本，解決自動化腳本維護成本高的痛點。目前為學習探索階段。'
-    },
-    'Prompt Engineering': {
-      desc: 'AI 指令優化技術',
-      usage: '透過結構化的 Prompt 設計，讓 AI 更準確理解測試需求並生成有效輸出。應用於 Jira 資料分析、測試報告摘要生成、以及 Claude Code 開發流程的效率提升。'
-    },
-    'mitmproxy': {
-      desc: 'HTTP/HTTPS/WebSocket 流量攔截工具',
-      usage: '以代理模式攔截 App 與 API 之間的加密流量，解析 wss:// WebSocket 數據幀的明文內容。相比 Fiddler 更輕量，支援腳本化流量修改，適合需要自動化分析的測試情境。'
+    "Git／Jenkins": {
+        "desc": "測試環境部署",
+        "usage": "我使用 Git、Jenkins 維護測試環境部署流程，並整理可供團隊沿用的操作文件。"
     }
-  };
+};
 
   // Modal HTML
+  let modalTrigger = null;
   const modal = document.createElement('div');
   modal.id = 'skill-modal';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-label', '工具實際用途');
   modal.innerHTML = `
     <div class="modal-backdrop"></div>
     <div class="modal-box">
-      <button class="modal-close">✕</button>
+      <button class="modal-close" aria-label="關閉工具說明">✕</button>
       <div class="modal-tool-name"></div>
       <div class="modal-desc"></div>
       <div class="modal-section-label">使用情境</div>
@@ -1183,11 +1010,15 @@
     document.body.style.paddingRight = scrollbarWidth + 'px';
     document.querySelector('nav').style.paddingRight = scrollbarWidth + 'px';
     document.body.style.overflow = 'hidden';
+    modalTrigger = document.activeElement;
     modal.classList.add('open');
+    modal.querySelector('.modal-close').focus();
   }
 
   function closeModal() {
+    const wasOpen = modal.classList.contains('open');
     modal.classList.remove('open');
+    if (wasOpen && modalTrigger) modalTrigger.focus();
     document.body.style.overflow = '';
     document.body.style.paddingRight = '';
     document.querySelector('nav').style.paddingRight = '';
@@ -1195,10 +1026,18 @@
 
   modal.querySelector('.modal-close').addEventListener('click', closeModal);
   modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      modal.querySelector('.modal-close').focus();
+    }
+  });
 
   document.querySelectorAll('.skill-tag').forEach(tag => {
     tag.addEventListener('click', () => openModal(tag.textContent.trim()));
+    tag.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(tag.textContent.trim()); } });
   });
 </script>
 
