@@ -1,795 +1,98 @@
 <!DOCTYPE html>
-<html lang="zh-TW"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="郭峻瑋有十年以上 QA 經驗，重視測試規劃、實測證據、AI 協作與流程改善。工作案例與個人實作介紹。">
-  <title>郭峻瑋｜資深 QA、測試自動化與流程改善</title>
-  <meta property="og:title" content="郭峻瑋｜資深 QA、測試自動化與流程改善">
-  <meta property="og:description" content="郭峻瑋有十年以上 QA 經驗，重視測試規劃、實測證據、AI 協作與流程改善。工作案例與個人實作介紹。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://retroisall.github.io/personal-portfolio/">
-  <meta property="og:locale" content="zh_TW">
-  <link rel="canonical" href="https://retroisall.github.io/personal-portfolio/">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,4 93,27 93,73 50,96 7,73 7,27' fill='%232d2416'/><polygon points='50,18 80,35 80,65 50,82 20,65 20,35' fill='%238b7355'/><text x='50' y='58' font-family='system-ui,sans-serif' font-size='28' font-weight='800' fill='%23f5f1ed' text-anchor='middle'>JW</text></svg>">
-  <style>
-    /* ── 新配色：溫暖米色/淺褐色雙色調 ── */
-    :root {
-      --bg-light: #f5f1ed;
-      --bg-dark: #2d2416;
-      --bg-darker: #1f1815;
-      --surface: #ede8e2;
-      --text-dark: #2d2416;
-      --text-light: #6b6259;
-      --text-muted: #9a8f85;
-      --text-white: #ffffff;
-      --border-light: rgba(45, 36, 22, 0.1);
-      --border-medium: rgba(45, 36, 22, 0.15);
-      --border-dark: rgba(45, 36, 22, 0.25);
-      --accent: #8b7355;
-    }
-
-    /* ── Reset ── */
-    *, *::before, *::after { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-    }
-
-    html { 
-      scroll-behavior: smooth; 
-    }
-
-    body {
-      background: linear-gradient(135deg, #f5f1ed 0%, #ede8e2 50%, #e3dcd4 100%);
-      color: var(--text-dark);
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      font-size: 16px;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
-
-    a {
-      color: var(--text-dark);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: var(--accent);
-    }
-
-    /* ── 背景全屏圖片處理 ── */
-    .bg-hero {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: linear-gradient(135deg, rgba(245, 241, 237, 0.95) 0%, rgba(237, 232, 226, 0.92) 100%);
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    /* ── Parallax 幾何背景 ── */
-    .parallax-bg {
-      position: fixed;
-      top: 0;
-      right: -200px;
-      width: 600px;
-      height: 100vh;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .parallax-shape {
-      position: absolute;
-      opacity: 0.25;
-    }
-
-    .shape-1 {
-      width: 600px;
-      height: 600px;
-      background: var(--bg-darker);
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      transform-origin: center;
-    }
-
-    /* ── Navigation ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(245, 241, 237, 0.98);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-light);
-      padding: 16px 0;
-    }
-
-    nav .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-logo {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text-dark);
-      letter-spacing: -0.01em;
-    }
-
-    .logo-icon {
-      display: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent);
-    }
-
-    /* ── Hero ── */
-    #hero {
-      padding: 120px 0 100px;
-    }
-
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    section {
-      padding: 80px 0;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .hero-content {
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      background: var(--surface);
-      color: var(--accent);
-      border: 1px solid var(--border-medium);
-      border-radius: 24px;
-      padding: 6px 16px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero-name {
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-      color: var(--text-dark);
-    }
-
-    .hero-name .accent {
-      color: var(--accent);
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: var(--text-light);
-      max-width: 560px;
-      margin-bottom: 40px;
-      line-height: 1.6;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 64px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      cursor: pointer;
-      border: 1px solid transparent;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: var(--text-dark);
-      color: var(--text-white);
-    }
-
-    .btn-primary:hover {
-      background: var(--bg-darker);
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text-dark);
-      border: 1px solid var(--border-medium);
-    }
-
-    .btn-outline:hover {
-      background: var(--surface);
-      border-color: var(--text-dark);
-    }
-
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 40px;
-      padding: 40px 0;
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .stat-number {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 8px;
-      font-weight: 500;
-    }
-
-    /* ── Section Header ── */
-    .section-header {
-      margin-bottom: 56px;
-    }
-
-    .section-tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 800;
-      color: var(--accent);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    h2.section-title {
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      color: var(--text-dark);
-      margin-bottom: 12px;
-    }
-
-    .section-desc {
-      color: var(--text-light);
-      max-width: 540px;
-      font-size: 1rem;
-    }
-
-    /* ── About Section ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: start;
-    }
-
-    .about-text p {
-      color: var(--text-light);
-      margin-bottom: 20px;
-      line-height: 1.8;
-    }
-
-    .about-text strong {
-      color: var(--text-dark);
-      font-weight: 600;
-    }
-
-    .highlight-card {
-      background: var(--text-dark);
-      color: var(--text-white);
-      border-radius: 12px;
-      padding: 32px;
-      animation: fadeInUp 0.8s ease-out 0.2s both;
-    }
-
-    .highlight-card h3 {
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--surface);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .highlight-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .highlight-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .highlight-list li::before {
-      content: '→';
-      color: var(--surface);
-      flex-shrink: 0;
-      font-weight: 700;
-      margin-top: 2px;
-    }
-
-    /* ── Timeline ── */
-    .timeline {
-      position: relative;
-      padding-left: 32px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 48px;
-      animation: fadeInUp 0.6s ease-out both;
-    }
-
-    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
-    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
-
-    .timeline-dot {
-      position: absolute;
-      left: -16px;
-      top: 6px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 3px solid var(--bg-light);
-    }
-
-    .timeline-period {
-      font-size: 0.78rem;
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      margin-bottom: 8px;
-    }
-
-    .timeline-role {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-      color: var(--text-dark);
-    }
-
-    .timeline-company {
-      font-size: 0.95rem;
-      color: var(--text-light);
-      margin-bottom: 16px;
-      font-weight: 500;
-    }
-
-    .timeline-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .timeline-bullets li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.95rem;
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    .timeline-bullets li::before {
-      content: '·';
-      color: var(--accent);
-      flex-shrink: 0;
-      font-weight: 700;
-      font-size: 1.4rem;
-      line-height: 1;
-      margin-top: -3px;
-    }
-
-    /* ── Skills Grid ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-
-    .skill-category {
-      background: var(--text-dark);
-      color: var(--text-white);
-      border-radius: 12px;
-      padding: 28px;
-      animation: fadeInUp 0.6s ease-out both;
-      transition: all 0.3s ease;
-    }
-
-    .skill-category:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(45, 36, 22, 0.12);
-    }
-
-    .skill-category:nth-child(1) { animation-delay: 0.1s; }
-    .skill-category:nth-child(2) { animation-delay: 0.2s; }
-    .skill-category:nth-child(3) { animation-delay: 0.3s; }
-    .skill-category:nth-child(4) { animation-delay: 0.4s; }
-
-    .skill-category h3 {
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--surface);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .skill-tag {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 0.82rem;
-      color: var(--text-white);
-      transition: all 0.2s;
-    }
-
-    .skill-tag:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.4);
-    }
-
-    /* ── Featured Work ── */
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
-    }
-
-    .work-card {
-      background: var(--text-dark);
-      color: var(--text-white);
-      border-radius: 12px;
-      padding: 32px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      animation: fadeInUp 0.6s ease-out both;
-    }
-
-    .work-card:nth-child(1) { animation-delay: 0.1s; }
-    .work-card:nth-child(2) { animation-delay: 0.2s; }
-    .work-card:nth-child(3) { animation-delay: 0.3s; }
-
-    .work-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(45, 36, 22, 0.2);
-    }
-
-    .work-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .work-context {
-      font-size: 0.8rem;
-      color: var(--surface);
-      margin-bottom: 16px;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .work-desc {
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.9);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .work-outcome {
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .work-outcome strong {
-      color: var(--surface);
-    }
-
-    .work-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 16px;
-      font-size: 0.85rem;
-      color: var(--surface);
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-
-    .work-link:hover {
-      gap: 10px;
-    }
-
-    /* ── Contact ── */
-    .contact-wrap {
-      background: var(--text-dark);
-      color: var(--text-white);
-      border-radius: 12px;
-      padding: 56px;
-      text-align: center;
-      animation: fadeInUp 0.8s ease-out;
-    }
-
-    .contact-wrap h3 {
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-    }
-
-    .contact-wrap p {
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 36px;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 8px;
-      color: var(--text-white);
-      font-size: 0.95rem;
-      font-weight: 600;
-      transition: all 0.3s;
-      text-decoration: none;
-    }
-
-    .contact-link:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.6);
-    }
-
-    /* ── Footer ── */
-    footer {
-      padding: 40px 0;
-      border-top: 1px solid var(--border-light);
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      background: rgba(245, 241, 237, 0.5);
-    }
-
-    /* ── Animation ── */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .hero-stats {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-      }
-
-      nav .container {
-        padding: 0 16px;
-      }
-
-      .nav-links {
-        gap: 20px;
-      }
-    }
-
-    @media (max-width: 640px) {
-      section {
-        padding: 56px 0;
-      }
-
-      #hero {
-        padding: 80px 0 60px;
-      }
-
-      .contact-wrap {
-        padding: 32px 20px;
-      }
-
-      .work-card,
-      .skill-category,
-      .highlight-card {
-        padding: 24px;
-      }
-    }
-
-    :focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 4px;
-    }
-
-    @media (max-width: 768px) {
-      .parallax-bg { display: none; }
-      nav .container { flex-wrap: wrap; gap: 8px; }
-      .nav-links { flex-wrap: wrap; gap: 8px 20px; }
-      .container { overflow-wrap: anywhere; }
-      .work-grid, .skills-grid { grid-template-columns: minmax(0, 1fr); }
-      .about-grid > *, .work-grid > *, .skills-grid > * { min-width: 0; }
-      #skill-modal .modal-box { max-height: calc(100dvh - 48px); overflow-y: auto; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .hero-content, .highlight-card, .timeline-item, .skill-category,
-      .work-card, .contact-wrap { opacity: 1 !important; transform: none !important; }
-      .parallax-shape { transform: translateY(-50%) !important; }
-      .btn:hover { transform: none; }
-      .work-link:hover { gap: 6px; }
-    }
-
-    @media print {
-      @page { size: A4; margin: 15mm; }
-      :root {
-        --bg-light: #fff; --bg-dark: #fff; --bg-darker: #fff;
-        --surface: #fff; --text-dark: #000; --text-light: #000;
-        --text-muted: #000; --text-white: #000; --accent: #000;
-      }
-      *, *::before, *::after {
-        color: #000 !important; background: transparent !important;
-        animation: none !important; transition: none !important;
-        box-shadow: none !important; text-shadow: none !important;
-      }
-      html { scroll-behavior: auto; }
-      body { background: #fff !important; padding: 0 !important; overflow: visible !important; }
-      nav, .bg-hero, .parallax-bg, #skill-modal, button, [role="button"], .btn { display: none !important; }
-      .container { max-width: none; padding: 0; overflow-wrap: anywhere; }
-      section, #hero { padding: 16px 0; }
-      .section-header { margin-bottom: 16px; }
-      .hero-content, .highlight-card, .timeline-item, .skill-category,
-      .work-card, .contact-wrap { opacity: 1 !important; transform: none !important; }
-      .highlight-card, .skill-category, .work-card, .contact-wrap {
-        background: #fff !important; border: 1px solid #777; padding: 16px;
-        break-inside: avoid; page-break-inside: avoid;
-      }
-      .timeline-item { break-inside: avoid; page-break-inside: avoid; }
-      .about-grid, .work-grid, .skills-grid { display: block; }
-      .highlight-card, .skill-category, .work-card { margin-bottom: 16px; }
-      .contact-links { display: block; }
-      a[href^="https://"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
-      a[href^="mailto:"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
-    }
-  </style>
-
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>郭峻瑋｜資深 QA・測試自動化與流程改善</title>
+<meta name="description" content="郭峻瑋｜資深 QA。十年以上測試經驗，AI 用在工作與作品，結果自己核對。">
+<meta property="og:title" content="郭峻瑋｜資深 QA・測試自動化與流程改善">
+<meta property="og:description" content="郭峻瑋｜資深 QA。十年以上測試經驗，AI 用在工作與作品，結果自己核對。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://retroisall.github.io/personal-portfolio/">
+<meta property="og:locale" content="zh_TW">
+<link rel="canonical" href="https://retroisall.github.io/personal-portfolio/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+<style>
+:root{--bg:#f5f1ed;--surface:#ede8e2;--ink:#2d2416;--muted:#6b6259;--accent:#8b7355;--line:#d9d0c5}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.8}a{color:inherit;text-underline-offset:5px}a:hover{color:var(--accent)}button{font:inherit}a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:5px}h1,h2,h3,p{margin:0}h1{font-size:clamp(2.35rem,5.6vw,4.4rem);line-height:1.24;letter-spacing:-.04em}h2{font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.35}h3{font-size:1.22rem;line-height:1.5}p{margin-top:16px}nav{position:sticky;top:0;z-index:20;background:rgba(245,241,237,.96);border-bottom:1px solid var(--line)}.nav-inner{max-width:1120px;margin:auto;padding:16px 28px;display:flex;gap:22px;align-items:center}.nav-mark{width:20px;height:23px;background:var(--accent);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);flex-shrink:0}.nav-link{font-size:.88rem;text-decoration:none;white-space:nowrap}.nav-link.active{color:var(--accent);font-weight:750}.container{max-width:1120px;margin:auto;padding:0 28px}section{padding:76px 0;border-bottom:1px solid var(--line);position:relative}.eyebrow{font-size:.87rem;color:var(--accent);font-weight:750;letter-spacing:.05em;margin-bottom:14px}.hero-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:54px;align-items:center}.identity{font-size:1.05rem;font-weight:650;margin-bottom:18px}.intro{color:var(--muted);font-size:1.08rem;max-width:650px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{display:inline-flex;align-items:center;justify-content:center;padding:11px 21px;border:1px solid var(--accent);border-radius:7px;text-decoration:none;font-size:.94rem;font-weight:650}.button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:13px}.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:23px 20px;min-width:0}.stat strong{display:block;font-size:1.95rem;line-height:1.25;letter-spacing:-.03em}.stat span{display:block;font-size:.87rem;color:var(--muted);margin-top:10px}.section-top{margin-bottom:30px;max-width:720px}.section-top p{color:var(--muted)}.three-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.trait{padding:26px;background:var(--surface);border-radius:12px;border-top:3px solid var(--accent)}.trait p{font-size:.94rem;color:var(--muted)}.hex{display:block;width:17px;height:20px;background:var(--accent);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);margin-bottom:18px}.case{background:var(--ink);color:var(--bg);padding:29px;border-radius:14px;display:flex;flex-direction:column}.case .eyebrow{color:#c4ae91;margin-bottom:15px}.case h3{font-size:1.28rem}.case p{color:#e0d7cd;font-size:.94rem}.case .result{padding-top:18px;margin-top:auto}.result strong{display:block;color:#fff;font-size:1.55rem}.result span{display:block;font-size:.86rem;color:#d0c0ad}.support-case{padding:23px 0 0}.support-case h3{font-size:1rem}.support-case p{color:var(--muted);font-size:.94rem}.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.skill-card{border:1px solid var(--line);border-radius:12px;padding:25px}.skill-card p{font-size:.92rem;color:var(--muted)}.tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:19px}.skill-tag{display:inline-block;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:7px 12px;font-size:.85rem;cursor:pointer}.skill-tag:hover{color:var(--ink);background:#dfd3c4!important;border-color:var(--accent)!important}.timeline{display:grid;gap:25px}.job{display:grid;grid-template-columns:230px 1fr;gap:26px;border-left:3px solid var(--accent);padding-left:23px}.job time{display:block;font-size:.84rem;color:var(--muted);margin-top:5px}.job p{font-size:.95rem;margin:0}.project{display:grid;grid-template-columns:1fr 1.45fr;gap:32px;border:1px solid var(--line);padding:30px;border-radius:14px}.status{display:inline-block;font-size:.82rem;padding:4px 10px;background:var(--surface);border-radius:5px;margin-top:14px}.project p{margin:0;color:var(--muted)}.background-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:42px}.background-grid p{color:var(--muted)}.education{padding:24px;border:1px solid var(--line);border-radius:12px}.education span{display:block;margin-top:8px}.education time{display:block;color:var(--muted);font-size:.9rem;margin-top:10px}.contact{max-width:720px}.contact p{color:var(--muted)}.email{overflow-wrap:anywhere}footer{padding:28px 0;font-size:.85rem;color:var(--muted)}.footer-inner{display:flex;gap:24px;justify-content:space-between}.parallax-bg{position:fixed;pointer-events:none;z-index:-1;right:-140px;top:50%;width:410px;height:470px;transform:translateY(-50%);background:#ede8e2;opacity:.55;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}#skill-modal .modal-box{max-height:calc(100dvh - 48px);overflow:auto;overflow-wrap:anywhere}#skill-modal .modal-close{min-width:36px;min-height:36px;color:#fff}#skill-modal .modal-section-label{color:#c4ae91}
+.job ul{margin:12px 0 0;padding-left:20px;font-size:.94rem}.job li+li{margin-top:9px}.project-copy p+p{margin-top:14px}.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}.project-small{display:block;padding:25px;min-width:0}.project-small .project-copy{margin-top:20px}.project-featured{background:var(--surface);border-color:#c7b9a6}.project-link{display:inline-block;margin-top:16px;font-size:.9rem}.project-grid .status{font-size:.78rem}.email-address{display:block;margin-top:20px;overflow-wrap:anywhere;font-weight:650}.project-grid .project{break-inside:avoid}
+h1{font-size:clamp(2.1rem,4.7vw,3.35rem)}.intro{font-size:1rem}.stat strong{font-size:clamp(1.2rem,2vw,1.45rem);line-height:1.55;letter-spacing:0}.case .result strong{font-size:1.15rem;line-height:1.6}.case .result strong+strong{margin-top:12px}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr;gap:30px}.three-grid{grid-template-columns:1fr}.case .result{margin-top:20px}.job{grid-template-columns:1fr;gap:10px}.project,.background-grid{grid-template-columns:1fr;gap:24px}section{padding:54px 0}.parallax-bg{display:none}}
+@media(max-width:520px){.container{padding:0 20px}.nav-inner{padding:13px 20px;gap:14px;flex-wrap:wrap}.nav-mark{display:none}.nav-link{font-size:.8rem}.skill-grid{grid-template-columns:1fr}.stat{padding:19px 15px}.stat strong{font-size:1.65rem}.stat span{font-size:.82rem}.project{padding:23px}.footer-inner{flex-direction:column;gap:10px}#skill-modal{padding:16px!important}#skill-modal .modal-box{padding:30px 23px;max-height:calc(100dvh - 32px)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.parallax-bg{transform:translateY(-50%)!important}}
+@page{size:A4;margin:14mm}
+@media print{body{background:white;font-size:10pt;color:#000}nav,.parallax-bg,.actions,#skill-modal{display:none!important}.container{max-width:none;padding:0}section{padding:16px 0;break-inside:auto}.hero-grid{grid-template-columns:1.3fr 1fr;gap:20px}h1{font-size:25pt}h2{font-size:17pt}h3{font-size:12pt}.stat{padding:10px;min-height:0}.stat strong{font-size:18pt}.three-grid{grid-template-columns:1fr}.trait,.case,.skill-card,.project,.education,.job{break-inside:avoid;padding:14px;border:1px solid #aaa;background:white;color:#000}.case p,.case .eyebrow,.case .result strong,.case .result span{color:#222}.case .result{margin-top:12px}.skill-grid{gap:12px}.skill-tag{border:0;padding:2px;background:white}.project{grid-template-columns:1fr 1.5fr}.job{grid-template-columns:190px 1fr}.background-grid{gap:20px}.hex{display:none}footer{padding:12px 0}a{color:#000;text-decoration:none}}
+@media(max-width:520px){.project-grid{grid-template-columns:1fr}.project-small{padding:23px}}
+@media(max-width:520px){.stat strong{font-size:1.13rem;line-height:1.6}.stats{gap:10px}}
+@media print{.stat strong{font-size:12pt;line-height:1.5}.case .result strong{font-size:12pt}}
+#hero .feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}#hero .trait ul{margin:18px 0 0;padding-left:20px;color:var(--muted);font-size:.94rem}#hero .trait li+li{margin-top:12px}
+@media(max-width:800px){#hero .feature-grid{grid-template-columns:1fr}}
+@media print{#hero .feature-grid{grid-template-columns:1fr}#hero .trait li+li{margin-top:6px}}
+#work .case ul{padding-left:20px;margin:16px 0;color:#e0d7cd;font-size:.94rem}#work .case li+li{margin-top:10px}.background-notes{padding-left:20px;margin:20px 0 0;color:var(--muted)}.background-notes li+li{margin-top:14px}
+@media print{#work .case ul{color:#222}}
+#hero{padding-top:44px}#hero h1{font-size:clamp(1.3rem,2.4vw,1.7rem);line-height:1.45;letter-spacing:0;margin-bottom:8px}#hero .intro{margin-bottom:22px}#hero .trait h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.3}#hero .stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:12px}
+@media(max-width:800px){#hero .stats{grid-template-columns:1fr 1fr}}
+@media print{#hero h1{font-size:15pt;margin-bottom:10px}#hero .trait h2{font-size:15pt}}
+</style>
 </head>
 <body>
-
-<div class="bg-hero"></div>
-<div class="parallax-bg">
-  <div class="parallax-shape shape-1" data-parallax="0.1"></div>
+<div class="parallax-bg" data-parallax="0.12" aria-hidden="true"></div>
+<nav aria-label="主要導覽"><div class="nav-inner"><span class="nav-mark" aria-hidden="true"></span><a class="nav-link" href="#hero">簡介</a><a class="nav-link" href="#work">專案類型</a><a class="nav-link" href="#skills">專長</a><a class="nav-link" href="#experience">經歷</a><a class="nav-link" href="#contact">聯絡</a></div></nav>
+<main class="container">
+<section id="hero">
+<div class="identity">郭峻瑋</div>
+<h1>資深軟體測試工程師／測試自動化與流程改善</h1>
+<p class="intro">十年以上測試經驗，AI 用在工作與作品，結果自己核對。</p>
+<div class="feature-grid">
+<article class="trait"><span class="hex" aria-hidden="true"></span><h2>資深測試</h2><ul>
+<li>從遊戲研發、封測到上線，延伸至網頁測試</li>
+<li>依風險規劃、追蹤缺陷，帶領測試小組</li>
+<li>從畫面追到 API 與資料</li>
+<li>前端與 UI/UX 背景，理解使用流程與頁面結構</li>
+</ul></article>
+<article class="trait"><span class="hex" aria-hidden="true"></span><h2>AI 應用</h2><ul>
+<li>Claude Code＋Playwright，透過 MCP 執行測試</li>
+<li>AI 產生 Postman Collection，自己逐一核對</li>
+<li>AI 協助執行，腳本檢查紀錄與結論</li>
+<li>工作之外，與 AI 協作開發個人作品</li>
+</ul></article>
 </div>
-
-<!-- ── Navigation ── -->
-<nav>
-  <div class="container">
-    <div class="nav-logo"></div>
-    <ul class="nav-links">
-      <li><a href="#about" class="nav-link">關於我</a></li>
-      <li><a href="#experience" class="nav-link">經歷</a></li>
-      <li><a href="#skills" class="nav-link">技能</a></li>
-      <li><a href="#work" class="nav-link">專案</a></li>
-      <li><a href="#contact" class="nav-link">聯絡</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- ── Hero ── -->
-<section id="hero"><div class="container"><div class="hero-content"><div class="hero-tag">資深 QA ／ 測試自動化與流程改善</div><h1 class="hero-name">郭峻瑋<br><span class="accent">資深 QA</span></h1><p class="hero-subtitle">我是郭峻瑋，有十年以上 QA 與軟體測試經驗，曾任測試小組長與專案負責人。 我希望投入資深 QA、測試自動化或流程改善工作，結合測試判斷、技術診斷與團隊協作，建立可靠且可持續使用的品質流程。</p><div class="hero-cta"><a href="mailto:kuoway79@gmail.com" class="btn btn-primary">✉ 聯絡我</a><a href="#experience" class="btn btn-outline">↓ 查看經歷</a></div><div class="hero-stats"><div class="stat-item"><div class="stat-number">十年以上</div><div class="stat-label">QA 與軟體測試經驗</div></div><div class="stat-item"><div class="stat-number">一百多條</div><div class="stat-label">近期工作・去重後功能流程</div></div></div></div></div></section>
-
-<!-- ── About ── -->
-<section id="about"><div class="container"><div class="section-header"><div class="section-tag">關於我</div><h2 class="section-title">關於我</h2><p class="section-desc">先確認規則、風險與驗收標準，再逐項核對實測證據。</p></div><div class="about-grid"><div class="about-text"><p>我的測試工具一路從 Excel 公式、Apps Script／VBA、Ui.Vision 半自動化，走到 JavaScript、Playwright 與 AI 代理，各階段累積的概念幫助我理解新專案與工具的用法。</p><p>我先確認功能規則、風險與驗收標準，再運用工具執行測試，最後逐項核對實測證據。</p><p>我透過 MCP 串接 Claude Code 與 Playwright，讓 AI 協助規劃情境、撰寫腳本與執行瀏覽器測試，也使用 AI 產生 Postman Collection。</p><p>我負責對照截圖、API、資料庫與前端結果，不把工具回報的「通過」直接當成結論。</p></div><div class="highlight-card"><h3>核心強項</h3><ul class="highlight-list"><li>測試規劃：確認功能規則、風險與驗收標準</li><li>瀏覽器驗證：Playwright、截圖與回歸測試</li><li>資料核對：API、資料庫與前端結果</li><li>技術診斷：DevTools、WebSocket、adb／logcat</li><li>團隊協作：安排測試、追蹤缺陷、交接流程</li><li>AI 協作：協助執行，由我核對證據與結論</li></ul></div></div></div></section>
-
-<!-- ── Experience ── -->
-<section id="experience"><div class="container"><div class="section-header"><div class="section-tag">工作經歷</div><h2 class="section-title">工作經歷</h2><p class="section-desc">保留完整職涯，分清個人責任、團隊成果與每個數字的口徑。</p></div><div class="timeline"><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-period">2026/07 – 2026/09</div><div class="timeline-role">QA 工程師</div><div class="timeline-company">樂創互娛科技</div><ul class="timeline-bullets"><li>我在 2026 年 7 月至 9 月擔任 QA 工程師，負責多品牌影音串流平台四個品牌的 H5、管理後台及 App 測試，涵蓋十個以上站台環境。</li><li>功能規則需要釐清時，我先實際驗證，再與產品及開發確認預期行為，整理一百多條去重後功能流程作為驗收基準。</li><li>我維護跨品牌與後台合計 357 條測項，這是離職後整理的定版快照，與去重後的完整功能流程分別計數。</li><li>多模板改版時，我自建 141 條功能與視覺測項，對照四個模板執行驗證，首輪提出 28 張缺陷單並追蹤複驗至結案。</li><li>資料庫讀寫分離改版時，我對照 166 支 API 在雙環境的回應，運用 AI 產生 Postman Collection，再核對 API、資料庫與前端結果。</li><li>我在首輪人工驗證後，讓 AI 執行適合自動化的回歸測試，再以腳本檢查測試紀錄與結論。</li><li>安全性測試涵蓋品牌間的內容與帳號權限隔離、角色權限、兩步驟登入，以及輸入欄位對惡意程式碼的防護。</li><li>我也驗證從後台設定到前端顯示的端到端流程，並將測試工具、規範與注意事項交接給同事。</li></ul></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-period">2017/10 – 2026/04</div><div class="timeline-role">資深測試工程師與專案負責人</div><div class="timeline-company">祥捷國際｜英屬維京群島商祥捷國際開發股份有限公司台灣分公司</div><ul class="timeline-bullets"><li>我於 2017 年 10 月至 2026 年 4 月擔任資深測試工程師與專案負責人，帶領 2–3 人測試小組，依版本風險安排任務、追蹤缺陷，並與產品及開發對齊驗收範圍。</li><li>我負責十餘款自研遊戲與第三方專案的功能、整合及上線前驗證，兩年間與團隊交付 600 件以上有效缺陷報告。</li><li>我使用 Git、Jenkins 維護測試環境部署流程，並整理可供團隊沿用的操作文件。</li></ul></div><div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-period">2015/03 – 2017/08</div><div class="timeline-role">遊戲測試小組長</div><div class="timeline-company">遊戲產業</div><ul class="timeline-bullets"><li>我於 2015 年 3 月至 2017 年 8 月擔任遊戲測試小組長，主導遊戲從研發、封測到上線的測試流程。</li><li>我依主管交辦的業務方向，帶領約 25 人的陪玩／測試團隊，與團隊分析玩家行為並參與擬定陪玩策略。</li></ul></div></div></div></section>
-
-<!-- ── Skills ── -->
-<section id="skills"><div class="container"><div class="section-header"><div class="section-tag">技能與工具</div><h2 class="section-title">技能與工具</h2><p class="section-desc">點選標籤，查看我實際用它做什麼。</p></div><div class="skills-grid"><div class="skill-category"><h3>測試與診斷</h3><div class="skill-tags"><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Playwright 執行 H5 冒煙測試並留下截圖證據。">Playwright</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Postman 對照改版前後的 API 回應，AI 產生的 Collection 由我再逐一核對。">Postman</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Figma 對照前端文字、元件、顏色與位置是否符合設計稿。">Figma</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 adb／logcat 連接 Android WebView 實機跑流程，並查找 App 卡住的原因。">adb／logcat</span></div><p>Playwright：H5 冒煙測試</p><p>Postman：API 回應對照</p><p>Figma：設計稿對照</p><p>adb／logcat：Android 實機診斷</p></div><div class="skill-category"><h3>腳本與流程</h3><div class="skill-tags"><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 JavaScript 撰寫 Playwright 測試腳本，在 AI 普及前也曾於 Codewars 完成兩百多題。">JavaScript</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Python 撰寫檢查腳本，比對截圖缺漏、產生測試報告與多品牌對照圖。">Python</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Google Apps Script／VBA 將 Jira 資料匯入試算表分析、批次替圖片改檔名。">Apps Script／VBA</span></div><p>JavaScript：測試腳本</p><p>Python：檢查腳本與報告</p><p>Apps Script／VBA：試算表與檔案處理</p></div><div class="skill-category"><h3>資料核對</h3><div class="skill-tags"><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Chrome DevTools 觀察 Network 請求與 WebSocket 訊息，追查資料流。">Chrome DevTools</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 MongoDB／Redis 核對操作後的資料是否正確寫入。">MongoDB／Redis</span></div><p>Chrome DevTools：請求與訊息診斷</p><p>MongoDB／Redis：操作後資料核對</p></div><div class="skill-category"><h3>AI 與團隊協作</h3><div class="skill-tags"><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Claude Code 協助操作瀏覽器、撰寫測試腳本與整理報告。">Claude Code</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我用 Jira／Confluence 開單、追蹤缺陷與同步測試報告。">Jira／Confluence</span><span class="skill-tag" role="button" tabindex="0" aria-haspopup="dialog" title="我使用 Git、Jenkins 維護測試環境部署流程，並整理可供團隊沿用的操作文件。">Git／Jenkins</span></div><p>Claude Code：AI 協助執行</p><p>Jira／Confluence：缺陷與報告協作</p><p>Git／Jenkins：測試環境部署</p></div></div></div></section>
-
-<!-- ── Featured Work ── -->
-<section id="work"><div class="container"><div class="section-header"><div class="section-tag">工作代表案例</div><h2 class="section-title">工作代表案例</h2><p class="section-desc">本人做了什麼、如何驗證，以及可核對的結果。</p></div><div class="work-grid"><div class="work-card"><div class="work-title">大型賽事系統驗證</div><div class="work-context">多帳號情境與壓力測試</div><div class="work-desc">在大型賽事系統驗證中，我以腳本批次建立測試帳號，模擬 200 個機器人執行壓力測試，並驗證多帳號情境與排行榜邏輯。</div><div class="work-outcome"><strong>結果：</strong>我在正式壓測前發現問題，該系統後續實際支援線上三千人併發參賽。</div></div><div class="work-card"><div class="work-title">跨雲資料庫遷移驗證</div><div class="work-context">AWS → 阿里雲</div><div class="work-desc">在 AWS 遷往阿里雲的資料庫遷移專案中，我盤點需驗證頁面，與決策者確認測試範圍與驗收基準，再協調各組完成資料與報表驗證。</div><div class="work-outcome">這些經驗讓我重視執行前先釐清風險、責任與判定依據。</div></div></div></div></section>
-
-<!-- ── Contact ── -->
-<section id="projects"><div class="container"><div class="section-header"><div class="section-tag">個人實作</div><h2 class="section-title">個人實作</h2><p class="section-desc">工作之外，把日常問題做成工具；依實際進度標示。</p></div><div class="work-grid"><div class="work-card"><div class="work-title">YouTube Learning Bar</div><div class="work-context">曾上線・新版準備中</div><div class="work-desc">我曾與 AI 協作完成雙語字幕套件，讓看影片、查字與複習接在一起。</div><div class="work-outcome"><p><strong>AI 協作：</strong>與 AI 協作開發；Claude Code。</p><p><strong>QA 亮點：</strong>單元、靜態、Smoke 與本機 E2E 測試。</p><p>程式碼未公開</p></div><a class="work-link" href="https://github.com/retroisall/youtube-learning-bar-privacy" target="_blank" rel="noopener noreferrer">↗ 公開政策頁</a></div><div class="work-card"><div class="work-title">Life Notes Agent</div><div class="work-context">個人使用・持續開發</div><div class="work-desc">我把網頁上的討論整理成 Obsidian 筆記，做成只給自己用的工具。</div><div class="work-outcome"><p><strong>AI 協作：</strong>Claude Code／Codex 串接與驗證。</p><p><strong>QA 亮點：</strong>單元、host、靜態與 E2E 回歸。</p><p>程式碼未公開</p></div></div><div class="work-card"><div class="work-title">語音對話工具</div><div class="work-context">個人使用・持續開發</div><div class="work-desc">我做了一個語音對話工具，讓我用說的輸入，也能聽取回應。</div><div class="work-outcome"><p><strong>AI 協作：</strong>與 AI 協作開發；Claude Code。</p><p><strong>QA 亮點：</strong>語音辨識、繁簡轉換與麥克風實測。</p><p>程式碼未公開</p></div></div><div class="work-card"><div class="work-title">BBC 新聞精選推播</div><div class="work-context">個人使用・功能已完成</div><div class="work-desc">我把新聞篩選、繁中翻譯與 LINE 推播接起來，減少每天逐篇翻找。</div><div class="work-outcome"><p><strong>AI 協作：</strong>與 AI 協作開發；Claude Code。</p><p><strong>QA 亮點：</strong>手動驗證與通知測試入口。</p><p>程式碼未公開</p></div></div><div class="work-card"><div class="work-title">吃單字電子雞</div><div class="work-context">規劃中・尚未完成遊戲</div><div class="work-desc">我正在規劃一隻靠英文單字餵養的電子雞，把複習放進照顧寵物的過程。</div><div class="work-outcome"><p><strong>AI 協作：</strong>與 AI 協作討論規格。</p><p>程式碼未公開</p></div></div></div></div></section>
-<section id="interests"><div class="container"><div class="section-header"><div class="section-tag">工作之外</div><h2 class="section-title">工作之外</h2><p class="section-desc">整理知識與持續實作，讓經驗可以查找與沿用。</p></div><div class="about-grid"><div class="about-text"><p>工作之外，我使用 Obsidian 整理 QA、前端與開發工具研究，以及測試方法、工具操作與問題排查紀錄，方便日後查找與沿用。</p><p>我曾與 AI 協作開發並上線 YouTube Learning Bar，也就是 Chrome 雙語字幕套件，完成前端功能與資料串接。</p><p>我以 GitHub Actions 建立 E2E Smoke Test，定期執行基本功能測試。</p></div><div class="highlight-card"><h3>接下來想做的事</h3><ul class="highlight-list"><li>我希望持續改善測試品質與工作流程，讓測試判斷、AI 應用與團隊協作累積成可追查、可交接的工作方式。</li></ul></div></div></div></section>
-<section id="contact"><div class="container"><div class="contact-wrap"><h3>一起合作？</h3><p>若你在尋找資深 QA、測試自動化或流程改善的人選，歡迎與我聯絡。</p><div class="contact-links"><a href="mailto:kuoway79@gmail.com" class="contact-link">✉ kuoway79@gmail.com</a><a href="https://github.com/retroisall" class="contact-link" target="_blank" rel="noopener noreferrer">⌥ GitHub</a></div></div></div></section>
-
-<!-- ── Footer ── -->
-<footer>
-  <div class="container">
-    <p>© 2026 郭峻瑋</p>
-  </div>
-</footer>
-
+<div class="stats" aria-label="經驗與案例摘要">
+<div class="stat"><strong>10 年以上 QA 與軟體測試經驗</strong></div>
+<div class="stat"><strong>三個月內建立 100 多條功能流程測試規格</strong></div>
+<div class="stat"><strong>讀寫分離改版，雙環境對照 166 支 API</strong></div>
+<div class="stat"><strong>兩年內與團隊交付 600 件以上有效缺陷報告</strong></div>
+</div>
+</section>
+<section id="work"><div class="section-top"><h2>專案類型</h2></div><div class="three-grid">
+<article class="case"><h3>遊戲研發與上線</h3><p>十餘款東南亞市場牌桌類遊戲與第三方專案的功能、整合及上線前驗證。</p><div class="result"><strong>研發、封測（CBT）到上線的完整測試流程</strong></div></article>
+<article class="case"><h3>活動與賽事</h3><p>大型賽事系統：腳本批次建立帳號，驗證多帳號與排行榜。</p><div class="result"><strong>壓力測試模擬 200 個機器人</strong><strong>支援單場 3,000 人以上的賽事系統驗證</strong></div></article>
+<article class="case"><h3>H5 平台與後台</h3><p>多品牌影音串流平台：4 個品牌 H5 模板、1 套管理後台，10 個以上站台環境。</p><div class="result"><strong>自建 141 條功能與視覺測項，對照 4 套模板；首輪提出 28 張缺陷單</strong><strong>改版前後：166 支 API 雙環境比對</strong></div></article>
+<article class="case"><h3>App</h3><p>四個品牌的 App 測試：adb／logcat 連 WebView 實機跑流程，查 App 卡住的原因。</p><div class="result"><strong>分析競品廣告機制，促成採用既有功能的 App 展示版設計</strong></div></article>
+<article class="case"><h3>跨雲資料庫遷移</h3><p>AWS 至阿里雲，無回退機制。</p><div class="result"><strong>盤點驗收範圍，協調各組執行資料與報表驗證</strong></div></article>
+</div></section>
+<section id="skills"><div class="section-top"><h2>專長</h2><p>點選工具查看使用情境。</p></div><div class="skill-grid">
+<article class="skill-card"><h3>介面與 API</h3><p>H5／WebView 流程、設計稿比對、改版 API 對照。</p><div class="tags"><span class="skill-tag" role="button" tabindex="0">Playwright</span><span class="skill-tag" role="button" tabindex="0">Postman</span><span class="skill-tag" role="button" tabindex="0">Figma</span><span class="skill-tag" role="button" tabindex="0">adb／logcat</span></div></article>
+<article class="skill-card"><h3>腳本與自動化</h3><p>測試腳本、截圖缺漏、Jira 試算表分析與批次改檔名。</p><div class="tags"><span class="skill-tag" role="button" tabindex="0">JavaScript</span><span class="skill-tag" role="button" tabindex="0">Python</span><span class="skill-tag" role="button" tabindex="0">Apps Script／VBA</span></div></article>
+<article class="skill-card"><h3>資料追查</h3><p>Network／WebSocket 訊息與操作後的資料寫入。</p><div class="tags"><span class="skill-tag" role="button" tabindex="0">Chrome DevTools</span><span class="skill-tag" role="button" tabindex="0">MongoDB／Redis</span></div></article>
+<article class="skill-card"><h3>協作與部署</h3><p>缺陷單、測試報告與 Git／Jenkins 測試環境部署。</p><div class="tags"><span class="skill-tag" role="button" tabindex="0">Claude Code</span><span class="skill-tag" role="button" tabindex="0">Jira／Confluence</span><span class="skill-tag" role="button" tabindex="0">Git／Jenkins</span></div></article>
+</div><details class="support-case"><summary>其他核心技術</summary><p>測試工具：UI.Vision（Kantu）、Airtest、Selenium、WebSocket。</p><p>開發與環境：JavaScript（ES6+）、Docker、Linux、SQL（MySQL／PostgreSQL）、AWS／阿里雲雲端服務。</p><p>流程與知識管理：n8n、Jira Automation、Jira／Confluence API、Shell、GitHub Actions、Obsidian。</p></details></section>
+<section id="experience"><div class="section-top"><h2>經歷</h2></div><div class="timeline">
+<article class="job"><div><h3>樂創互娛科技</h3><time>2026/07 ~ 2026/09</time></div><div><p>QA 工程師（AI 測試自動化）。</p><ul><li>負責四品牌 H5、後台與 App 的維護、更新測試。</li><li>安全性測試：權限隔離、角色操作、兩步驟登入、輸入欄位防惡意程式碼。</li><li>處理 249 張需求與缺陷單，完成測試工具、操作規範及接任者交接。</li></ul></div></article>
+<article class="job"><div><h3>祥捷國際</h3><time>2017/10 ~ 2026/04</time></div><div><p>資深測試工程師／專案負責人。</p><ul><li>專案 QA Lead，帶領 2–3 人小組，與 PM、RD 對齊驗收。</li><li>兩年內與團隊交付 600 件以上有效缺陷報告。</li></ul></div></article>
+<article class="job"><div><h3>遊戲產業</h3><time>2015/03 ~ 2017/08</time></div><div><p>遊戲測試小組長。</p><ul><li>主導研發、封測（CBT）到上線的完整測試流程。</li><li>依主管方向帶領約 25 人陪玩／測試團隊。</li><li>公司由 200 人縮至 30 人；原 10 人部門僅留 2 人，獲選核心留任。</li></ul></div></article>
+</div></section>
+<section id="projects"><div class="section-top"><div class="eyebrow">AI 協作實作</div><h2>個人作品</h2><p>以下作品的程式碼目前未公開。</p></div>
+<article class="project project-featured"><div><h3>YouTube Learning Bar</h3><span class="status">曾上線・新版準備中</span><a class="project-link" href="https://github.com/retroisall/youtube-learning-bar-privacy" target="_blank" rel="noopener noreferrer">公開政策頁</a></div><div class="project-copy"><p>與 AI 協作完成介面、字幕功能、Firebase 資料串接及介紹網站。</p><p>GitHub Actions 定期測基本功能；另做單元、靜態、Smoke 與本機 E2E 測試。</p></div></article>
+<div class="project-grid">
+<article class="project project-small"><div><h3>Life Notes Agent</h3><span class="status">個人使用・持續開發</span></div><div class="project-copy"><p>與 AI 協作串接 Claude Code／Codex，將網頁討論整理成 Obsidian 筆記。</p><p>驗證結果；執行單元、工具執行程式測試、靜態檢查與 E2E 回歸。</p></div></article>
+<article class="project project-small"><div><h3>語音對話工具</h3><span class="status">個人使用・持續開發</span></div><div class="project-copy"><p>與 AI 協作開發語音對話工具，支援語音輸入與回應播放。</p><p>驗證語音辨識、繁簡轉換，並實測麥克風。</p></div></article>
+<article class="project project-small"><div><h3>BBC 新聞精選推播</h3><span class="status">個人使用・功能已完成</span></div><div class="project-copy"><p>與 AI 協作串接新聞篩選、繁中翻譯與 LINE 推播。</p><p>執行手動驗證，並提供通知測試功能。</p></div></article>
+<article class="project project-small"><div><h3>吃單字電子雞</h3><span class="status">規劃中・尚未完成遊戲</span></div><div class="project-copy"><p>規劃以英文單字餵養電子雞，將單字複習結合寵物照顧。</p><p>目前與 AI 協作討論規格。</p></div></article>
+</div></section>
+<section id="background"><div class="background-grid"><div><h2>背景</h2><ul class="background-notes"><li>資策會 UI/UX 學習、HTML 前端經驗。</li><li>工具演進：Excel 公式 → Apps Script／VBA → Ui.Vision → JavaScript、Playwright → AI 代理。</li><li>Obsidian：QA、前端與排錯筆記。</li></ul></div><div class="education"><h3>學歷</h3><span>長榮大學</span><span>大眾傳播學系</span><time>2008/09 ~ 2012/06</time></div></div></section>
+<section id="contact"><div class="contact"><h2>聯絡</h2><span class="email-address">kuoway79@gmail.com</span><div class="actions"><a class="button primary email" href="mailto:kuoway79@gmail.com">用 Email 聯絡</a></div></div></section>
+</main>
+<footer><div class="container footer-inner"><a href="https://github.com/retroisall" target="_blank" rel="noopener noreferrer">GitHub 個人頁</a></div></footer>
 <script>
   // Parallax scroll effect
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -812,7 +115,7 @@
 
   // Smooth scroll and active nav link
   const navLinks = document.querySelectorAll('.nav-link');
-  const sections = ['hero', 'about', 'experience', 'skills', 'work', 'contact'];
+  const sections = ['hero', 'work', 'skills', 'experience', 'contact'];
 
   function updateActiveNav() {
     let current = '';
@@ -849,52 +152,52 @@
   // ── Skill Modal ──
   const toolData = {
     "Playwright": {
-        "desc": "H5 冒煙測試",
-        "usage": "我用 Playwright 執行 H5 冒煙測試並留下截圖證據。"
+        "desc": "Playwright：瀏覽器自動化。",
+        "usage": "用在 H5 冒煙測試、截圖留證據。"
     },
     "Postman": {
-        "desc": "API 回應對照",
-        "usage": "我用 Postman 對照改版前後的 API 回應，AI 產生的 Collection 由我再逐一核對。"
+        "desc": "Postman：API 測試。",
+        "usage": "用在改版前後的 API 回應對照；Collection 由 AI 產生，我再逐一核對。"
     },
     "Figma": {
-        "desc": "設計稿對照",
-        "usage": "我用 Figma 對照前端文字、元件、顏色與位置是否符合設計稿。"
+        "desc": "Figma：設計稿。",
+        "usage": "用在核對前端的文字、元件、顏色和位置有沒有照設計做。"
     },
     "adb／logcat": {
-        "desc": "Android 實機診斷",
-        "usage": "我用 adb／logcat 連接 Android WebView 實機跑流程，並查找 App 卡住的原因。"
+        "desc": "adb／logcat：Android 除錯工具。",
+        "usage": "用在連 WebView 實機跑流程、查 App 卡住的原因。"
     },
     "JavaScript": {
-        "desc": "測試腳本",
-        "usage": "我用 JavaScript 撰寫 Playwright 測試腳本，在 AI 普及前也曾於 Codewars 完成兩百多題。"
+        "desc": "JavaScript：程式語言。",
+        "usage": "用在寫 Playwright 測試腳本；AI 普及前就在 Codewars 解過兩百多題。"
     },
     "Python": {
-        "desc": "檢查腳本與報告",
-        "usage": "我用 Python 撰寫檢查腳本，比對截圖缺漏、產生測試報告與多品牌對照圖。"
+        "desc": "Python：寫檢查腳本。",
+        "usage": "用在比對截圖缺漏、產生測試報告和多品牌對照圖。"
     },
     "Apps Script／VBA": {
-        "desc": "試算表與檔案處理",
-        "usage": "我用 Google Apps Script／VBA 將 Jira 資料匯入試算表分析、批次替圖片改檔名。"
+        "desc": "Google Apps Script／VBA：試算表自動化。",
+        "usage": "用在把 Jira 資料匯入試算表分析、批次替圖片改檔名。"
     },
     "Chrome DevTools": {
-        "desc": "請求與訊息診斷",
-        "usage": "我用 Chrome DevTools 觀察 Network 請求與 WebSocket 訊息，追查資料流。"
+        "desc": "Chrome DevTools：瀏覽器開發者工具。",
+        "usage": "用在看 Network 請求和 WebSocket 訊息，追資料流。"
     },
     "MongoDB／Redis": {
-        "desc": "操作後資料核對",
-        "usage": "我用 MongoDB／Redis 核對操作後的資料是否正確寫入。"
+        "desc": "MongoDB／Redis：資料庫與快取。",
+        "usage": "用在核對操作後資料有沒有正確寫入。"
     },
     "Claude Code": {
-        "desc": "AI 協助執行",
-        "usage": "我用 Claude Code 協助操作瀏覽器、撰寫測試腳本與整理報告。"
+        "desc": "Claude Code：AI 程式助手。",
+        "usage": "用在透過 MCP 操作瀏覽器、寫測試腳本、整理報告。"
     },
     "Jira／Confluence": {
-        "desc": "缺陷與報告協作",
-        "usage": "我用 Jira／Confluence 開單、追蹤缺陷與同步測試報告。"
+        "desc": "Jira／Confluence：專案管理與文件。",
+        "usage": "用在開單、追缺陷、同步測試報告。"
     },
     "Git／Jenkins": {
         "desc": "測試環境部署",
-        "usage": "我使用 Git、Jenkins 維護測試環境部署流程，並整理可供團隊沿用的操作文件。"
+        "usage": "使用 Git、Jenkins 維護測試環境部署流程，並整理可供團隊沿用的操作文件。"
     }
 };
 
@@ -1040,7 +343,5 @@
     tag.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(tag.textContent.trim()); } });
   });
 </script>
-
-
-
-</body></html>
+</body>
+</html>
